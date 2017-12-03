@@ -1,0 +1,14 @@
+<div class="robot-simulator">
+
+    <div class="controller">
+
+        <textarea id="commands" #cInput cols="40" rows="5"></textarea>
+
+        <button (click)="move(cInput.value)">move</button>
+    </div>
+
+    <div class="container">
+        <rob-robot [pos]='position'></rob-robot>
+    </div>
+
+</div>

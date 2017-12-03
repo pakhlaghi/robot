@@ -1,0 +1,31 @@
+.robot {
+    position: relative;
+    top: 200px;
+    right: 200px;
+    width: 0;
+    height: 0;
+}
+
+.north {
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid red;
+}
+
+.east {
+    border-left: 100px solid red;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+}
+
+.west {
+    border-right: 100px solid red;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+}
+
+.south {
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid red;
+}

@@ -1,3 +1,4 @@
+import { RobotSimulatorModule } from './features/robot-simulator/robot-simulator.module';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    RobotSimulatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
