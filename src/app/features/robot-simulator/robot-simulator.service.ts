@@ -1,6 +1,8 @@
+import { Observable } from 'rxjs/Observable';
 import { Direction } from './../../shared/model/direction.enum';
 import { Robot } from './../../shared/model/robot';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/observable/from';
 
 @Injectable()
 export class RobotSimulatorService {
@@ -24,19 +26,22 @@ export class RobotSimulatorService {
       if (this.validateCommand(cmd, index)) {
         // get next position
         if (cmd === 'report') {
-          moveCommand.push(cmd);
+          this.currentPosition.status = 'report';
+          moveCommand.push(this.currentPosition);
         } else {
           const p: Robot = this.generatePosition(cmd);
           // add to command seq if safe
           if (this.safeToMove(p)) {
             this.currentPosition = p;
             moveCommand.push(p);
+          } else {
+            moveCommand.push('unsafe');
           }
         }
       }
     });
 
-    return moveCommand;
+    return Observable.from(moveCommand);
   }
 
   public checkValidCommand(command: string) {
@@ -72,7 +77,7 @@ export class RobotSimulatorService {
         break;
       case 'place':
         const p = command.split(' ')[1].replace(' ', '');
-        nextPosition = new Robot(parseInt(p.split(',')[0]), parseInt(p.split(',')[1]), Direction[p.split(',')[2]]);
+        nextPosition = new Robot(parseInt(p.split(',')[0]), parseInt(p.split(',')[1]), Direction[p.split(',')[2]], 'place');
         break;
       default:
         break;
@@ -85,16 +90,16 @@ export class RobotSimulatorService {
     let position: Robot;
     switch (this.currentPosition.direction) {
       case 0: // north
-        position = new Robot(this.currentPosition.x, this.currentPosition.y + 1, this.currentPosition.direction);
+        position = new Robot(this.currentPosition.x, this.currentPosition.y + 1, this.currentPosition.direction, 'move');
         break;
       case 1: // west
-        position = new Robot(this.currentPosition.x - 1, this.currentPosition.y, this.currentPosition.direction);
+        position = new Robot(this.currentPosition.x - 1, this.currentPosition.y, this.currentPosition.direction, 'move');
         break;
       case 2: // south
-        position = new Robot(this.currentPosition.x, this.currentPosition.y - 1, this.currentPosition.direction);
+        position = new Robot(this.currentPosition.x, this.currentPosition.y - 1, this.currentPosition.direction, 'move');
         break;
       case 3: // east
-        position = new Robot(this.currentPosition.x + 1, this.currentPosition.y, this.currentPosition.direction);
+        position = new Robot(this.currentPosition.x + 1, this.currentPosition.y, this.currentPosition.direction, 'move');
         break;
       default:
         break;
@@ -104,20 +109,20 @@ export class RobotSimulatorService {
 
   private rotate(direction: string): Robot {
     let position: Robot;
-let dir;
+    let dir;
 
     if (direction === 'cw') {
       dir = this.currentPosition.direction - 1 === -1 ? 3 : this.currentPosition.direction - 1;
-      position = new Robot(this.currentPosition.x, this.currentPosition.y, dir);
+      position = new Robot(this.currentPosition.x, this.currentPosition.y, dir, 'cw');
     } else {
       dir = this.currentPosition.direction + 1 === 4 ? 0 : this.currentPosition.direction + 1;
-      position = new Robot(this.currentPosition.x, this.currentPosition.y, dir);
+      position = new Robot(this.currentPosition.x, this.currentPosition.y, dir, 'ccw');
     }
 
     return position;
   }
 
   private safeToMove(position: Robot) {
-    return true;
+    return (position.x >= 0 && position.x < 5 && position.y < 5 && position.y >= 0) ? true : false;
   }
 }

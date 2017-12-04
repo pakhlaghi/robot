@@ -1,3 +1,8 @@
-<div class="robot" [style.top.px]="400 - pos.y * 100" [style.left.px]="pos.x * 100" [ngClass]='direction[pos.direction]'>
-
+<div class="robot" [style.top.px]="400 - y * 100" [style.left.px]="x * 100">
+    <img [ngClass]='direction[dir]' src="./assets/images/robot.png" />
+    <div class="speech-bubble" *ngIf="status === 'report'">
+        x: {{x}}
+        <br> y: {{y}}
+        <br> f: {{direction[dir]}}
+    </div>
 </div>

@@ -1,6 +1,6 @@
 import { Robot } from './../model/robot';
 import { Direction } from './../model/direction.enum';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'rob-robot',
@@ -8,6 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./robot.component.scss']
 })
 export class RobotComponent {
-  @Input() public pos: Robot ;
+  @Input() public x: any;
+  @Input() public y: any;
+  @Input() public dir: any;
+  @Input() public status: string;
   public direction = Direction;
 }
