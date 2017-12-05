@@ -29,7 +29,6 @@ export class RobotSimulatorComponent {
           this.position = position;
           this.ref.detectChanges();
         }, ind * 1000);
-console.log(position);
 
       });
 

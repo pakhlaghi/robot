@@ -32,7 +32,7 @@
 }
 
 .speech-bubble {
-    top: -180px;
+    top: -160px;
     left: 70px;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -79,4 +79,9 @@
     text-shadow: none;
     -webkit-transform: rotateZ(-14.32394487827058deg) translateX(-5px) skewX(-36deg);
     transform: rotateZ(-14.32394487827058deg) translateX(-5px) skewX(-36deg);
+}
+
+.red {
+    top: -90px;
+    height: 50px;
 }

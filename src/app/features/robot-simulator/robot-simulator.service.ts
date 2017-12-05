@@ -18,7 +18,7 @@ export class RobotSimulatorService {
 
   constructor() { }
 
-  public moveSeq(command: string): any {
+  public moveSeq(command: string): Observable<any> {
     const cArray = this.toCommandsArr(command.trim().toLowerCase());
     const moveCommand = [];
 
@@ -29,14 +29,15 @@ export class RobotSimulatorService {
           this.currentPosition.status = 'report';
           moveCommand.push(this.currentPosition);
         } else {
-          const p: Robot = this.generatePosition(cmd);
+          let p: Robot = this.generatePosition(cmd);
           // add to command seq if safe
           if (this.safeToMove(p)) {
-            this.currentPosition = p;
+            this.currentPosition = Object.assign({}, p);
             moveCommand.push(p);
           } else {
             this.currentPosition.status = 'unsafe';
-            moveCommand.push(this.currentPosition);
+             p = Object.assign({}, this.currentPosition);
+            moveCommand.push(p);
           }
         }
       }

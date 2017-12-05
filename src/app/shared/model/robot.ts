@@ -9,5 +9,6 @@ export class Robot {
     this.x = x;
     this.y = y;
     this.direction = direction;
+    this.status = status;
   }
 }
