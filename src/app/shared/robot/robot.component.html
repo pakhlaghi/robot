@@ -5,4 +5,8 @@
         <br> y: {{y}}
         <br> f: {{direction[dir]}}
     </div>
+
+    <div class="speech-bubble red" *ngIf="status === 'unsafe'">
+        not safe
+    </div>
 </div>

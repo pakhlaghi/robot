@@ -54,6 +54,11 @@
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+.red,
+.red::before {
+    background: red !important;
+}
+
 .speech-bubble::before {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;

@@ -35,7 +35,8 @@ export class RobotSimulatorService {
             this.currentPosition = p;
             moveCommand.push(p);
           } else {
-            moveCommand.push('unsafe');
+            this.currentPosition.status = 'unsafe';
+            moveCommand.push(this.currentPosition);
           }
         }
       }
