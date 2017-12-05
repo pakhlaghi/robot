@@ -13,13 +13,11 @@ Constraints: The toy robot must not fall off the table during movement. This als
 
 ## Example
 
-*Input and Output:
-
-a)----------------
-PLACE 0,0,NORTH
-MOVE
-REPORT
-Output: 0,1,NORTH
+    PLACE 1,1,NORTH
+    MOVE
+    LEFT
+    RIGHT
+    REPORT
 
 ## Development server
 
