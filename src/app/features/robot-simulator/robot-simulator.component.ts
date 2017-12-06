@@ -11,13 +11,14 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 })
 export class RobotSimulatorComponent {
   public position: Robot = new Robot(0, 0, Direction.north, 'place');
+  public message: string;
 
   constructor(private rsService: RobotSimulatorService,
     private loggerService: LoggerService,
     private ref: ChangeDetectorRef) { }
 
   public move(command: string) {
-
+    this.message = '';
     if (this.rsService.checkValidCommand(command)) {
       const moveSeq = this.rsService.moveSeq(command);
 
@@ -34,7 +35,8 @@ export class RobotSimulatorComponent {
 
 
     } else {
-      this.loggerService.log('invalid Command or direction, the command should start with \'PLACE\'');
+      this.message = 'invalid Command or direction, the command should start with \'PLACE\''
+      this.loggerService.log(this.message);
     }
 
   }

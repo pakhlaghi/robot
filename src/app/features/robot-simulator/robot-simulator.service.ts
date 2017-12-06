@@ -47,7 +47,13 @@ export class RobotSimulatorService {
   }
 
   public checkValidCommand(command: string) {
-    const dir = command.split('\n')[0].split(' ')[1].split(',')[2].trim();
+    let dir: string;
+    try {
+      dir = command.split('\n')[0].split(' ')[1].split(',')[2].trim();
+    } catch (error) {
+      return false;
+    }
+
     return command.toLowerCase().trim().indexOf('place') === 0 && Direction[dir] >= 0 ? true : false;
   }
 

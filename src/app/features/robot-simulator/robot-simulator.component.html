@@ -6,7 +6,9 @@
 
         <button class="btn" (click)="move(cInput.value)">move</button>
     </div>
-
+    <div class='message' *ngIf="message !== ''">
+        {{message}}
+    </div>
     <div class="container">
         <rob-robot [x]='position.x' [y]='position.y' [dir]='position.direction' [status]='position.status'></rob-robot>
     </div>
