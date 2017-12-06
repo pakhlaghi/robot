@@ -20,10 +20,10 @@ export class RobotSimulatorComponent {
   public move(command: string) {
     this.message = '';
     if (this.rsService.checkValidCommand(command)) {
-      const moveSeq = this.rsService.moveSeq(command);
 
       let ind = 0;
-      moveSeq.subscribe((position) => {
+      this.rsService.moveSeq(command).subscribe((position) => {
+
         ind++;
 
         setTimeout(() => {
@@ -32,7 +32,6 @@ export class RobotSimulatorComponent {
         }, ind * 1000);
 
       });
-
 
     } else {
       this.message = 'invalid Command or direction, the command should start with \'PLACE\''

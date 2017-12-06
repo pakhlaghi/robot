@@ -1,16 +1,18 @@
 <div class="robot-simulator">
 
     <div class="controller">
-
         <textarea id="commands" #cInput cols="40" rows="5"></textarea>
 
         <button class="btn" (click)="move(cInput.value)">move</button>
     </div>
+
     <div class='message' *ngIf="message !== ''">
         {{message}}
     </div>
+
     <div class="container">
-        <rob-robot [x]='position.x' [y]='position.y' [dir]='position.direction' [status]='position.status'></rob-robot>
+        <rob-robot [x]='position.x' [y]='position.y' [dir]='position.direction' [status]='position.status'>
+        </rob-robot>
     </div>
 
 </div>
